@@ -1,4 +1,6 @@
 
+## My Notes - Done when 1.8 was pretty new. Quite an old test
+
 # Technical Test -
 
 ## Requirements

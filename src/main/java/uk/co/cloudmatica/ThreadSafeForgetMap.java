@@ -1,6 +1,7 @@
 package uk.co.cloudmatica;
 
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentSkipListMap;
 
@@ -84,12 +85,10 @@ public final class ThreadSafeForgetMap<K, V> implements ForgettingMap<K, V> {
 
         Pair<V> valueAndCount = contents.get(key);
 
-        if (valueAndCount != null) {
+        return Optional.ofNullable(valueAndCount).map( v -> {
             valueAndCount.accessCount = valueAndCount.accessCount + 1;
             return valueAndCount.value;
-        } else {
-            return null;
-        }
+        }).orElse(null);
     }
 
     @Override
